@@ -14,8 +14,8 @@
                         </div>
                     @endif
                     <div>
-                        <a href="/create">เขียนบทความ</a>  
-                      <a href="/blog">บทความทั้งหมด</a> </div> 
+                        <a href="/author/create">เขียนบทความ</a>  
+                      <a href="/author/blog">บทความทั้งหมด</a> </div> 
                     {{ __('You are logged in!') }}
                 </div>
             </div>

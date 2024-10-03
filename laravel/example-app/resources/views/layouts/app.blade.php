@@ -7,12 +7,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+        <style>
+              .ck-editor__editable_inline{
+                        min-height: 200px;
+    }
+        </style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -55,10 +59,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="blog">
+                                    <a class="dropdown-item" href="/author/blog">
                                      บทความทั้งหมด
                                  </a>
-                                 <a class="dropdown-item" href="create">
+                                 <a class="dropdown-item" href="/author/create">
                                     เขียนบทความใหม่
                                 </a>
 

@@ -18,7 +18,7 @@ class AdminControler extends Controller
     }
     // ข้อมูลของบทความ
     function blog(){
-        $blogs = Blog::paginate(3);
+        $blogs = Blog::paginate(10);
             return view('blog',compact('blogs'));
     }
     // เขียนบทความ
@@ -34,26 +34,26 @@ class AdminControler extends Controller
             'title'=>$request->title,
             'content'=>$request->content
         ];
-        DB::table('blogs')->insert($data);
-        return redirect("/blog");
+       Blog::insert($data);
+        return redirect("/author/blog");
     }
     function delete($id){
-        DB::table('blogs')->where('id',$id)->delete();
-        return redirect('/blog');
+        Blog::find($id)->delete();
+        return redirect()->back();
     }
     function change($id){
-       $blog = DB::table('blogs')->where('id',$id)->first();
+       $blog = Blog::find($id)->first();
        $data = [
         'status' => !$blog->status  // ใช้เครื่องหมาย -> แทน .
     ];
     
-       $blog= DB::table('blogs')->where('id',$id)->update($data);
-       return redirect("/blog");
+       $blog= Blog::find($id)->update($data);
+       return redirect("author/blog");
 
 
     }
     function edit($id){
-        $blog = DB::table('blogs')->where('id',$id)->first();
+        $blog = Blog::find($id);
         return view('edit',compact('blog'));
     }
     function update(Request $request,$id){
@@ -65,7 +65,9 @@ class AdminControler extends Controller
             'title'=>$request->title,
             'content'=>$request->content
         ];
-        DB::table('blogs')->where('id',$id)->update($data);
-        return redirect("/blog");
+        print_r($data);
+        print_r($id);
+        Blog::find($id)->update($data);
+        return redirect("author/blog");     
     }
 }

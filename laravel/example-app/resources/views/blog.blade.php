@@ -7,10 +7,9 @@
     <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">หัวข้อ</th>
+            <th scope="col">รายละเอียด</th>
+            <th scope="col">สถานะ</th>
             <th scope="col">แก้ไข</th></th>
             <th scope="col">ลบ</th>
           </tr>
@@ -22,13 +21,12 @@
         @foreach ($blogs as $item)
         <tbody>
             <tr>
-              <th scope="row">{{$count++}}</th>
               <td>{{$item->title}}</td>
-              <td>{{Str::limit($item->content,80)}}</td>
+              <td>{!!Str::limit($item->content,80)!!}</td>
               <td>@if ($item->status==true)
-                <p class="text text-success"><a  href="{{route('change',$item->id)}}"  class="btn btn-success">เผยแพร่</a></p>
+                <a  href="{{route('change',$item->id)}}"  class="btn btn-success">เผยแพร่</a>
             @else
-                <p class="text text-danger"><a href="{{route('change',$item->id)}}" class="btn btn-danger">ฉบับร่าง</a></p>    
+                <a href="{{route('change',$item->id)}}" class="btn btn-danger">ฉบับร่าง</a>   
             @endif</td>
                 <td ><a href="{{route('edit',$item->id)}}" class="btn btn-warning">แก้ไข</a></td>
                 <td ><a href="{{route('delete',$item->id)}}" class="btn btn-danger">ลบ</a></td>
