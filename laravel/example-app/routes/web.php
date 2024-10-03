@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminControler;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('abort',[AdminControler::class,'about'])->name('about');
+Route::get('abort ',[AdminControler::class,'about'])->name('about');
 Route::get('blog',[AdminControler::class,'blog'])->name('blog');
 Route::get('create',[AdminControler::class,'create'])->name('create');
 Route::post('insert',[AdminControler::class,'insert']);
