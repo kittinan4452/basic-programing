@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>รายละเอียดข้อมูล</title>
+</head>
+<body>
+    <div class="container">
+        <h1>TRAVEL</h1>
+        <div>
+            <h4 id="name">...</h4>
+            <img id="img" src="..." alt="">
+            <hr>
+            <p class="mt-2" id="detail"></p>
+            <div class="flex-row d-flex">
+                <p class="me-2">latitude: <p class="me-2" id="latitude"></p></p>
+                <p class="me-2">longitude: <p class="me-2" id="longitude"></p></p>
+            
+            </div>
+            <a class="btn btn-primary" href="index.html">กลับหน้าแรก</a>
+        
+        </div>
+</body>
+<script>
+    const url_params = new URLSearchParams(window.location.search);
+    const id = url_params.get('id');
+   
+  
+    const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch("http://localhost:8000/API/readone.php?id="+id, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {
+    console.log(result);
+        console.log();
+        document.getElementById('name').innerText=result.name;
+        document.getElementById('img').setAttribute('src',result.coverimage)
+        document.getElementById('img').setAttribute('alt',result.name)
+        document.getElementById('detail').innerText=result.detail;
+        document.getElementById('latitude').innerText=result.latitude;
+        document.getElementById('longitude').innerText=result.longitude;
+
+
+    
+   
+  })
+  .catch((error) => console.error(error));
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
